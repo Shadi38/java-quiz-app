@@ -31,6 +31,8 @@ public class QuestionController {
     //we want to return data as well as status code to the client with using ResponseEntity<>
     public ResponseEntity<ResponseEntity<List<Question>>> getAllQuestions(){
         return new ResponseEntity<>(questionService.getAllQuestions(), HttpStatus.OK);
+        //we created a new object of ResponseEntity.it will have 2 parameters:
+        //1-data which we want to return. 2-status code
     }
 
     //it means we want to fetch database on category

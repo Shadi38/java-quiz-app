@@ -15,15 +15,15 @@ import java.util.List;
 public class QuestionService {
 @Autowired
 QuestionDao questionDao;
-// // we should return list of object from question class(we can say rows in our table)
+//  we should return list of object from question class(we can say rows in our table)
 //    public List<Question> getAllQuestions() {
-//        //with findAll() we have a list of our questions
+//        with findAll() we have a list of our questions
 //        return questionDao.findAll();
 //    }
 
     public ResponseEntity<List<Question>> getAllQuestions(){
         try {
-            List<Question> questions = questionDao.findAll();
+            List<Question> questions = questionDao.findAll(); //find the data is the same as get the data meaning in JPA
             if (questions.isEmpty()) {
                 return new ResponseEntity<>(HttpStatus.NO_CONTENT); // 204 - No content
             }
@@ -31,8 +31,9 @@ QuestionDao questionDao;
             return new ResponseEntity<>(questions, HttpStatus.OK); // 200 - OK
         } catch (Exception e) {
             e.printStackTrace();
-            return new ResponseEntity<>(new ArrayList<>(), HttpStatus.INTERNAL_SERVER_ERROR); // 500 - Server error
         }
+            // if something went wrong ,it returns an empty array (new ArrayList<>() and INTERNAL_SERVER_ERROR)
+            return new ResponseEntity<>(new ArrayList<>(), HttpStatus.INTERNAL_SERVER_ERROR); // 500 - Server error
     }
 
 //    public List<Question> getQuestionsByCategory(String category) {
@@ -51,7 +52,7 @@ QuestionDao questionDao;
 
 
     public ResponseEntity<String> addQuestion(Question question) {
-        questionDao.save(question);
+        questionDao.save(question); //save is the same as add meaning in JPA
         return new ResponseEntity<>("Question added successfully", HttpStatus.CREATED);
     }
 }
