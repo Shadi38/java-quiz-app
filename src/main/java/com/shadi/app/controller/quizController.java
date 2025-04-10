@@ -22,6 +22,7 @@ public class quizController {
   //1---we create a quiz(it means data goes to our database and we want to have two extra tables :
   //1-quiz table 2-table we can have all questions for a particular quiz )
     @PostMapping("create")
+    //we want to have this url==> localhost:8080/quiz/create?category=Java&numQ=5&title=JQuiz
     public ResponseEntity<String> createQuiz(@RequestParam String category,@RequestParam Integer numQ, @RequestParam String title) {
         return quizService.CreateQuiz(category, numQ, title);
     }

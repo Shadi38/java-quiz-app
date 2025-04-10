@@ -25,13 +25,13 @@ public class QuizService {
 
 
     public ResponseEntity<String> CreateQuiz(String category, Integer numQ, String title) {
-
+      //in below method(findRandomQuestionsByCategory) we have  to specify how many questions we need & which category we need
       List<Question> questions = questionDao.findRandomQuestionsByCategory(category, numQ);
 
       Quiz quiz = new Quiz();
       quiz.setTitle(title);
       quiz.setQuestions(questions);
-      //with above three lines we created the quiz and with below we want to save the quiz(with QuizDao)
+      //with above three lines we created the quiz and with below we want to save our quiz that we were created in data base(with QuizDao)
         quizDao.save(quiz);
         return new ResponseEntity<>("Quiz created successfully", HttpStatus.CREATED);
     }

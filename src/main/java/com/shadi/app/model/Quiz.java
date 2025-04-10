@@ -4,9 +4,11 @@ import jakarta.persistence.*;
 import lombok.Data;
 
 import java.util.List;
-//making a Quiz a table with @Entity
+//making a Quiz table with @Entity
 @Entity
 @Data
+//we need 3 things in quiz table:
+//1-id  2-title for our quiz 3-questions for our quiz
 public class Quiz {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)

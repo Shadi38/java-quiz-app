@@ -20,7 +20,8 @@ public interface QuestionDao extends JpaRepository<Question, Integer> {
      List<Question> findByCategory(String category);
 
      //we need to choose questions which the number of questions is equal numQ (for example numQ=5) and category of the questions is equal to category(for example category=java)
-     @Query(value = "SELECT * FROM question q WHERE q.category = :category ORDER BY RANDOM() LIMIT :numQ", nativeQuery = true)
+    //we use @Query(comes from data jpl) if we want to execute particular query for method --> @Query(value = "", nativeQuery = true)
+    @Query(value = "SELECT * FROM question q WHERE q.category = :category ORDER BY RANDOM() LIMIT :numQ", nativeQuery = true)
      List<Question> findRandomQuestionsByCategory(@org.springframework.data.repository.query.Param("category") String category,
                                                   @org.springframework.data.repository.query.Param("numQ") int numQ);
 }
