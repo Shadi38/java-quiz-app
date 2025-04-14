@@ -40,7 +40,7 @@ public class QuizService {
     public ResponseEntity<List<QuestionWrapper>> getQuizQuestions(Integer id) {
         //we need to fetch the quiz object from database
 
-        Optional<Quiz> quiz = quizDao.findById(id);
+        Optional<Quiz> quiz = quizDao.findById(id);  // optional means maybe we have data or not
         //with above line we got questions related to quiz(above quiz object has questions)
         //,but we have to convert questions to questionWrapper
         List<Question> questionsFromDB = quiz.get().getQuestions();
@@ -52,7 +52,18 @@ public class QuizService {
         return new ResponseEntity<>(questionsForUser, HttpStatus.OK);
     }
 
-//    public ResponseEntity<Integer> calculateResult(Integer id, List<Response> responses) {
-//        Quiz quiz = quizDao.findById(id).get();
-//    }
+
+
+    public ResponseEntity<Integer> calculateResult(Integer id, List<Response> responses) {
+        Quiz quiz = quizDao.findById(id).get(); //we get quiz object with specific id
+        List<Question> questions = quiz.getQuestions(); //we will get all questions from that above quiz
+        int right=0;
+        int i=0;
+        for(Response response : responses) {
+            response.getResponse().equals(questions.get(i).getRightAnswer());
+            right++;
+            i++;
+        }
+        return new ResponseEntity<>(right, HttpStatus.OK);
+    }
 }

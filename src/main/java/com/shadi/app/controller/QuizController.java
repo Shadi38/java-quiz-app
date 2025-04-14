@@ -27,6 +27,7 @@ public class quizController {
         return quizService.CreateQuiz(category, numQ, title);
     }
   //2---after creating the quiz, we want to fetch these questions in that quiz.
+    //we use QuestionWrapper instead of question because we want to not have answer in our questions(we will have all columns except answer column)
     // (we have to give the quiz id and fetch all questions related to that id)
     //Get req (localhost:8080/quiz/get/1)
     @GetMapping("get/{id}")
@@ -34,12 +35,13 @@ public class quizController {
         return quizService.getQuizQuestions(id);
     }
 
-    //we want to submit the quiz(in below the id is for quiz).we sent two thing to the server: 1-id of quiz 2-user's answers for questions
-    //@PostMapping("submit/{id}")
+    //we want to submit the quiz.we sent two thing to the server: 1-id of quiz 2-user's answer for question which user selected(response)
+    //we send those two things to server to calculate the result and send back the result(score of exam)
+    @PostMapping("submit/{id}")  //--> for example: localhost:8080/quiz/submit/1
     //in below method we return the score of the exam as an integer
-//    public ResponseEntity<Integer> submitQuiz(@PathVariable Integer id, @RequestBody List<Response> responses) {
-//        return  quizService.calculateResult(id, responses);
-//    }
+    public ResponseEntity<Integer> submitQuiz(@PathVariable Integer id, @RequestBody List<Response> responses) {
+        return  quizService.calculateResult(id, responses);
+    }
 
 
 }
