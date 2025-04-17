@@ -2,9 +2,7 @@ package com.shadi.app.controller;
 
 //we want to create a quiz with this url which is Post req  (localhost:8080/quiz/create?category:java&numQ:5&title:JQuiz)
 
-import com.shadi.app.model.Question;
 import com.shadi.app.model.QuestionWrapper;
-import com.shadi.app.model.Quiz;
 import com.shadi.app.model.Response;
 import com.shadi.app.service.QuizService;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -16,7 +14,7 @@ import java.util.List;
 @RestController
 @RequestMapping("quiz")
 
-public class quizController {
+public class QuizController {
     @Autowired
     QuizService quizService;
   //1---we create a quiz(it means data goes to our database and we want to have two extra tables :

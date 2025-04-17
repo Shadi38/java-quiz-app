@@ -7,17 +7,14 @@ import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
 import lombok.Data;
-// we use ORM (object relational mapping). we create variables that represent our columns in our database's table
-//the number of object that we have for this class,each object represent the row in our table in database
+// we use ORM (object relational mapping).
+//each object represent the row in our table in database
 
-
-//we want to our table in database be able to map with this class(the name of the table should be the same as the class name). because of that we have to use @Entity
 @Entity
-//instead of implementing two method (getter and setter ) for every variable, we use @Data from Lombok (we configured Lombok in pom.xml)
+//instead of implementing two method (getter and setter ) for every variable, we use @Data from Lombok
 @Data
 public class Question {
 
-    // we make sure the id is primary key and this id wil be auto generated
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Integer id;

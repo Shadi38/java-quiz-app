@@ -7,9 +7,9 @@ import org.springframework.stereotype.Repository;
 
 import java.util.List;
 
-// @Repository comes from data-jpl package that we entered to pom.xml. with data-jpl we can do below:
+// @Repository comes from data-jpl package. with data-jpl we can do below:
 // instead of creating QuestionDao class, we create QuestionDao interface and extend JpaRepository.
-// with above approach, data-jpl will handle all things(fetching data from database and saving data)
+// with above approach, data-jpa will handle all things(fetching data from database and saving data)
 //in JpaRepository<> we have to mention 2 things :
 // 1- what type of table you are working with.(class name which the table is there and is mapped to the class)
 // 2- what is the type of primary key.

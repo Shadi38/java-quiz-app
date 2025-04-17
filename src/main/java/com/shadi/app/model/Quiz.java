@@ -2,9 +2,8 @@ package com.shadi.app.model;
 
 import jakarta.persistence.*;
 import lombok.Data;
-
 import java.util.List;
-//making a Quiz table with @Entity
+
 @Entity
 @Data
 //we need 3 things in quiz table:

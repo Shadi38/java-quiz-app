@@ -16,11 +16,6 @@ public class QuestionService {
 @Autowired
 QuestionDao questionDao;
 //  we should return list of object from question class(we can say rows in our table)
-//    public List<Question> getAllQuestions() {
-//        with findAll() we have a list of our questions
-//        return questionDao.findAll();
-//    }
-
     public ResponseEntity<List<Question>> getAllQuestions(){
         try {
             List<Question> questions = questionDao.findAll(); //find the data is the same as get the data meaning in JPA
@@ -28,6 +23,8 @@ QuestionDao questionDao;
                 return new ResponseEntity<>(HttpStatus.NO_CONTENT); // 204 - No content
             }
             System.out.println("Fetched Questions: " + questions);
+            //we created a new object of ResponseEntity.it will have 2 parameters:
+            //1-data which we want to return. 2-status code
             return new ResponseEntity<>(questions, HttpStatus.OK); // 200 - OK
         } catch (Exception e) {
             e.printStackTrace();
@@ -35,10 +32,6 @@ QuestionDao questionDao;
             // if something went wrong ,it returns an empty array (new ArrayList<>() and INTERNAL_SERVER_ERROR)
             return new ResponseEntity<>(new ArrayList<>(), HttpStatus.INTERNAL_SERVER_ERROR); // 500 - Server error
     }
-
-//    public List<Question> getQuestionsByCategory(String category) {
-//        return questionDao.findByCategory(category);
-//    }
 
     public ResponseEntity<List<Question>> getQuestionsByCategory(String category) {
         try{
